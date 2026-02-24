@@ -142,51 +142,489 @@ img {
 }
 
 /* ==========================================================================
-   Workshop Cards
+   Workshops Layout
    ========================================================================== */
 
 .workshops {
   padding: 0 0 80px;
 }
 
-.workshop-list {
-  display: grid;
-  grid-template-columns: 1fr;
+/* Section headers (Coming Next, Past Workshops) */
+.section-header {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  border-left: 3px solid var(--color-orange);
+  padding-left: 10px;
+}
+
+/* ==========================================================================
+   Featured Workshop (upcoming)
+   ========================================================================== */
+
+/* Badge + date — borrowed pattern from community calls */
+.call-featured-badge {
+  display: inline-block;
+  background: var(--color-orange);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.call-featured-date {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+}
+
+.workshop-featured {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-orange);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
   gap: 24px;
+  margin-bottom: 56px;
+  position: relative;
 }
 
 @media (min-width: 768px) {
-  .workshop-list {
+  .workshop-featured {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+/* Left: content */
+.workshop-featured-body {
+  flex: 0 0 60%;
+}
+
+/* Right: video + buttons */
+.workshop-featured-actions {
+  flex: 0 0 36%;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.workshop-featured-content {
+  /* wrapper no longer needed — kept for JS compatibility */
+  display: contents;
+}
+
+.workshop-featured-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+@media (min-width: 768px) {
+  .workshop-featured-title {
+    font-size: 1.5rem;
+  }
+}
+
+.workshop-featured-subtitle {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Agenda list inside featured */
+.workshop-agenda {
+  list-style: none;
+  margin-top: 10px;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 520px;
+}
+
+.workshop-agenda li {
+  padding-left: 14px;
+  position: relative;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.workshop-agenda li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-orange);
+}
+
+.workshop-agenda li strong {
+  color: var(--color-text);
+}
+
+/* Countdown — big numbers like community calls */
+.workshop-countdown-wrap {
+  margin-top: 20px;
+}
+
+.workshop-countdown-starts-in {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+}
+
+.workshop-countdown-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.workshop-countdown-row .countdown-block {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  min-width: 0;
+  gap: 2px;
+}
+
+.countdown-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+}
+
+.countdown-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* Right column: Watch on X (full-width orange) — reuse community call class */
+.call-featured-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-orange);
+  color: #000 !important;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.call-featured-cta:hover {
+  background: var(--color-orange-hover);
+  opacity: 1;
+}
+
+/* Right column: Add to Calendar (full-width orange outline) */
+.cal-picker-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--color-orange);
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.cal-picker-btn:hover {
+  background: rgba(255, 122, 0, 0.08);
+}
+
+/* Primary CTA button (kept for notify strip) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--color-orange);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--color-orange-hover);
+  opacity: 1;
+  color: #fff;
+}
+
+/* ==========================================================================
+   Coming Next — 2-column grid of compact cards
+   ========================================================================== */
+
+.workshop-upcoming-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+@media (min-width: 640px) {
+  .workshop-upcoming-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.workshop-upcoming-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: border-color 0.2s;
+  position: relative;
+}
+
+.workshop-upcoming-card:hover {
+  border-color: var(--color-orange);
+}
+
+.workshop-upcoming-card .workshop-video {
+  margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   Past Workshops — grid of recording cards (populated later)
+   ========================================================================== */
+
+.workshop-past-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .workshop-past-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1024px) {
-  .workshop-list {
+  .workshop-past-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.workshop-card {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
+/* Ghost cards for past workshops */
+.workshop-ghost-card {
+  border: 1px dashed rgba(45, 56, 67, 0.9);
   border-radius: var(--radius);
-  overflow: hidden;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+}
+
+.workshop-ghost-card svg {
+  width: 28px;
+  height: 28px;
+  opacity: 0.25;
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.badge-upcoming {
+  background: var(--color-orange);
+  color: #fff;
+}
+
+/* Workshop meta row */
+.workshop-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.workshop-date {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* Countdown */
+.countdown {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.countdown-label {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.countdown-blocks {
+  display: flex;
+  gap: 6px;
+}
+
+.countdown-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 46px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.countdown-val {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-unit {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+  margin-top: 3px;
+}
+
+.countdown-live {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-orange);
+}
+
+/* Workshop actions (calendar picker row) */
+.workshop-actions {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+/* Calendar picker */
+.cal-picker {
+  position: relative;
+  display: inline-block;
+}
+
+.cal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
   transition: border-color 0.2s;
 }
 
-.workshop-card:hover {
+.cal-btn:hover {
   border-color: var(--color-orange);
 }
 
-.workshop-card-content {
-  padding: 24px;
+.cal-btn svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 
-@media (min-width: 768px) {
-  .workshop-card-content {
-    padding: 32px;
-  }
+.cal-chevron {
+  width: 18px !important;
+  height: 18px !important;
+  opacity: 0.6;
+}
+
+.cal-dropdown {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  min-width: 180px;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.cal-dropdown a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: background 0.15s;
+}
+
+.cal-dropdown a:hover {
+  background: var(--color-bg-card-hover);
+  opacity: 1;
 }
 
 .workshop-number {
@@ -209,7 +647,7 @@ img {
 .workshop-subtitle {
   font-size: 0.9375rem;
   color: var(--color-text-secondary);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 @media (min-width: 768px) {
@@ -226,7 +664,7 @@ img {
   background: var(--color-bg);
   border-radius: 8px;
   overflow: hidden;
-  margin-bottom: 24px;
+  margin-bottom: 0;
 }
 
 .workshop-video iframe {
@@ -251,6 +689,37 @@ img {
   gap: 12px;
   color: var(--color-text-secondary);
   font-size: 0.875rem;
+  background: linear-gradient(160deg, #13202e 0%, #0d1216 55%, #1c0f00 100%);
+  text-align: center;
+  padding: 16px;
+}
+
+.workshop-placeholder-play {
+  width: 40px;
+  height: 40px;
+  color: var(--color-orange);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.workshop-placeholder-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.workshop-placeholder-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.4;
+  max-width: 200px;
+}
+
+.workshop-placeholder-date {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
 }
 
 .workshop-video-placeholder svg {
@@ -275,7 +744,7 @@ img {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
 }
 
 .workshop-topics li {
@@ -306,6 +775,8 @@ img {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: auto;
+  padding-top: 16px;
 }
 
 /* Guide Link */
@@ -328,6 +799,189 @@ img {
   width: 16px;
   height: 16px;
   fill: currentColor;
+}
+
+/* Workshop title icons */
+.workshop-title-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.workshop-title-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  stroke: var(--color-orange);
+  opacity: 0.85;
+}
+
+/* "In X weeks" relative time label */
+.workshop-weeks {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* Share button */
+.workshop-share-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  transition: border-color 0.2s, color 0.2s;
+  z-index: 10;
+}
+
+.workshop-share-btn:hover {
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+}
+
+.workshop-share-btn svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.workshop-share-tooltip {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.workshop-share-tooltip.visible {
+  opacity: 1;
+}
+
+/* Prerequisite / difficulty tags */
+.workshop-prereq-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  margin-bottom: 14px;
+}
+
+.workshop-prereq-tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 100px;
+  background: rgba(246, 247, 249, 0.06);
+  border: 1px solid rgba(246, 247, 249, 0.1);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* Disabled resource links */
+.workshop-guide-link--disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+.workshop-coming-soon {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+  margin-left: 4px;
+}
+
+/* ==========================================================================
+   Notify strip
+   ========================================================================== */
+
+.notify-strip {
+  background: #161e26;
+  padding: 56px 0;
+}
+
+.notify-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+@media (min-width: 640px) {
+  .notify-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+.notify-heading {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.notify-sub {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+}
+
+.notify-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.notify-input {
+  padding: 10px 16px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: 0.9375rem;
+  width: 220px;
+  transition: border-color 0.2s;
+}
+
+.notify-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.notify-input:focus {
+  outline: none;
+  border-color: var(--color-orange);
+}
+
+.notify-confirm {
+  font-size: 0.9375rem;
+  color: var(--color-green);
+  font-weight: 500;
+  display: none;
 }
 
 /* ==========================================================================
