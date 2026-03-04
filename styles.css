@@ -694,6 +694,58 @@ img {
   padding: 16px;
 }
 
+.workshop-video-placeholder--thumb {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.workshop-video-placeholder--thumb > * {
+  position: relative;
+  z-index: 1;
+}
+
+.workshop-video-placeholder--thumb .workshop-placeholder-play {
+  width: 56px;
+  height: 56px;
+  opacity: 0.7;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.workshop-video-placeholder--thumb:hover .workshop-placeholder-play {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.workshop-thumb-bar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+.workshop-thumb-live {
+  background: #e53e3e;
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  line-height: 1.4;
+}
+
+.workshop-thumb-date {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+}
+
 .workshop-placeholder-play {
   width: 40px;
   height: 40px;
