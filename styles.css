@@ -410,6 +410,10 @@ img {
   .workshop-upcoming-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .workshop-upcoming-card .workshop-title {
+    min-height: 3.6em;
+  }
 }
 
 .workshop-upcoming-card {
@@ -650,6 +654,13 @@ img {
   margin-bottom: 16px;
 }
 
+.workshop-description {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
 @media (min-width: 768px) {
   .workshop-title {
     font-size: 1.5rem;
@@ -856,7 +867,7 @@ img {
 /* Workshop title icons */
 .workshop-title-wrap {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 }
 
@@ -866,6 +877,7 @@ img {
   flex-shrink: 0;
   stroke: var(--color-orange);
   opacity: 0.85;
+  margin-top: 0.2em;
 }
 
 /* "In X weeks" relative time label */

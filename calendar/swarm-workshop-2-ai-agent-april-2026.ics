@@ -6,10 +6,10 @@ METHOD:PUBLISH
 BEGIN:VEVENT
 DTSTART:20260401T120000Z
 DTEND:20260401T130000Z
-SUMMARY:Swarm Workshop: Launch Your Own AI Agent on Swarm
-DESCRIPTION:Hands-on workshop by Swarm Foundation.\n\nBuild and deploy a fully off-chain\, autonomous & censorship-resistant AI agent using the Swarm MCP protocol.\n\nJoin on X: https://x.com/ethswarm
-URL:https://x.com/ethswarm
-LOCATION:https://x.com/ethswarm
+SUMMARY:Swarm Workshop: Make Your AI Agent Decentralized with Swarm
+DESCRIPTION:Hands-on workshop by Swarm Foundation.\n\nFully off-chain\, autonomous & censorship-resistant.\n\nWhat you'll learn:\n• Equip Your Agent — connect an AI tool to Swarm's unstoppable storage for decentralized "memory"\n• Swarm MCP — a native decentralized data layer for your agent\n• Autonomous — no single point of failure\, fully off-chain\n\nWatch live: https://x.com/i/broadcasts/1yKAPMwDmvqxb\nDiscord support: https://discord.gg/dUS68y87U4
+URL:https://x.com/i/broadcasts/1yKAPMwDmvqxb
+LOCATION:https://x.com/i/broadcasts/1yKAPMwDmvqxb
 STATUS:CONFIRMED
 SEQUENCE:0
 END:VEVENT
