@@ -1,5 +1,7 @@
 # Swarm Online Workshops
 
+> **Maintained by:** devrel team
+
 Landing page for the **Swarm Online Workshops** — a series of free, hands-on live
 sessions to learn, build, and use [Swarm](https://www.ethswarm.org), the
 decentralized storage and communication network.
